@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Mason Hancock.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -38,7 +38,8 @@ def draw_upside_down_wall(rectangle, n, window):
             that is the given rg.Rectangle.
       -- There are n rows in the wall.
       -- Each row is a row of "bricks" that are the same size
-            as the given rg.Rectangle.
+
+           as the given rg.Rectangle.
       -- Each row has one more brick than the row below it.
       -- Each row is centered on the bottom row.
 
@@ -49,9 +50,27 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # ------------------------------------------------------------------
+    c1_o = rectangle.corner_1
+    c2_o = rectangle.corner_2
+    h = rectangle.get_height()
+    w = rectangle.get_width()
+    c1 = rg.Point(0, 0)
+    c2 = rg.Point(0, 0)
+
+    for k in range(n):
+        c1.y = c1_o.y - h * k
+        c2.y = c2_o.y - h * k
+        c1.x = c1_o.x - w / 2 * k
+        c2.x = c2_o.x - w / 2 * k
+        for j in range(k + 1):
+            brick = rg.Rectangle(c1, c2)
+            brick.attach_to(window)
+            window.render(0.1)
+            c1.x += w
+            c2.x += w
 
 
 # ----------------------------------------------------------------------
